@@ -5,6 +5,7 @@
 
 const TelegramBot = require('node-telegram-bot-api');
 const { Pool } = require('pg');
+const http = require('http');
 
 // --- 1. CONEXIONES ---
 // El token y la URL de la base vienen de Render (variables de entorno).
@@ -257,3 +258,12 @@ prepararBase()
   .catch((e) => console.error('Error al arrancar:', e));
 
 bot.on('polling_error', (e) => console.error('Polling error:', e.message));
+
+// --- 10. SERVIDOR WEB MINIMO ---
+// Render exige que el servicio abra un puerto. El bot en si no lo necesita,
+// pero este mini-servidor mantiene contento a Render. Solo responde "OK".
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot activo');
+}).listen(PORT, () => console.log('Servidor escuchando en puerto ' + PORT));
