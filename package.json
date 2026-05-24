@@ -1,0 +1,16 @@
+{
+  "name": "cerebro-virtual-bot",
+  "version": "1.0.0",
+  "description": "Bot de Telegram para organizar tareas, recordatorios y notas",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.66.0",
+    "pg": "^8.11.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
